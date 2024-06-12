@@ -12,7 +12,7 @@ namespace Testing
 
         public ProductRepository(IDbConnection conn)
         {
-          _conn = conn;
+            _conn = conn;
         }
 
         public IEnumerable<Product> GetAllProducts()
@@ -34,37 +34,34 @@ namespace Testing
         public void UpdateProduct(Product prod)
         {
             _conn.Execute("UPDATE products SET Name = @name, Price = @price WHERE ProductID = @id",
-                new { name = Product.Name, price = Product.Price, id = Product.ProductID });
+                new { name = prod.Name, price = prod.Price, id = prod.ProductID });
         }
 
         public void InsertProduct(Product productToInsert)
         {
-            _conn.Execute("INSERT INTO products (NAME, PRICE, CATEGORYID) VALUES(@name, @price, @categoryID);"
-                new {name = productToInsert.Name, price = productToInsert.Price, categoryID = productToInsert.CategoryID });
+            _conn.Execute("INSERT INTO products (NAME, PRICE, CATEGORYID) VALUES(@name, @price, @categoryID);",
+                new { name = productToInsert.Name, price = productToInsert.Price, categoryID = productToInsert.CategoryID });
+        }
 
-            public IEnumerable<Category> GetCategories()
-            {
-                return_conn.Query<Category>("SELECT * FROM categories;");
-            }
+        public IEnumerable<Category> GetCategories()
+        {
+            return _conn.Query<Category>("SELECT * FROM categories;");
+        }
 
-            public Product AssignCategory()
-            {
-                var categoryList = GetCategories();
-                var product = new Product();
-                product.Categories = categoryList;
+        public Product AssignCategory()
+        {
+            var categoryList = GetCategories();
+            var product = new Product();
+            product.Categories = categoryList;
 
-                return product;
-            }
+            return product;
+        }
 
-            
-    }
-
-       
 
         public void DeleteProduct(Product product)
         {
             _conn.Execute("DELETE FROM REVIEWS WHERE ProductID = @id",
-                new {id = product.ProductID});
+                new { id = product.ProductID });
             _conn.Execute("DELETE FROM Sales WHERE ProductID = @id",
                new { id = product.ProductID });
 
@@ -72,3 +69,4 @@ namespace Testing
                new { id = product.ProductID });
         }
     }
+}
