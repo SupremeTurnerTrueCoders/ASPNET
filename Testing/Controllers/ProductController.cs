@@ -22,13 +22,13 @@ namespace Testing.Controllers
 
         public IActionResult ViewProduct(int id)
         {
-            var product = repo.GetProductById(id);
+            var product = repo.GetProduct(id);
             return View(product);
         }
 
         public IActionResult UpdateProduct(int id)
         {
-            Product prod = repo.GetProductById(id);
+            Product prod = repo.GetProduct(id);
 
             if (prod == null)
             {

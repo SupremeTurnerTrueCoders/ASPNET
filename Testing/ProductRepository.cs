@@ -26,10 +26,7 @@ namespace Testing
                 new { id = id });
         }
 
-        public Product GetProductById(int id)
-        {
-            throw new System.NotImplementedException();
-        }
+       
 
         public void UpdateProduct(Product prod)
         {

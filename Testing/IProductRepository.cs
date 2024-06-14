@@ -6,7 +6,8 @@ namespace Testing
     public interface IProductRepository
     {
         public IEnumerable<Product>GetAllProducts();
-        public Product GetProductById(int id);
+
+        public Product GetProduct(int id);
         public void UpdateProduct(Product prod);
 
         public void InsertProduct(Product productToInsert);
