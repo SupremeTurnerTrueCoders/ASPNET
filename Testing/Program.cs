@@ -13,7 +13,7 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddTransient<IProductRepository, ProductRepository>();
 
-var connectionString = builder.Configuration.GetConnectionString("bestbuy");
+var connectionString = builder.Configuration.GetConnectionString("finalproject");
 
 builder.Services.AddTransient<IDbConnection>((c) => new MySqlConnection(connectionString));
 

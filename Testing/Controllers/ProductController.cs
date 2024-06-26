@@ -40,15 +40,10 @@ namespace Testing.Controllers
         public IActionResult UpdateProductToDatabase(Product product)
         {
             repo.UpdateProduct(product);
-            return RedirectToAction("ViewProduct", new {id = product.ProductID});
+            return RedirectToAction("ViewProduct", new {id = product.Id});
         }
 
-        public IActionResult InsertProduct()
-        {
-            var prod = repo.AssignCategory();
-
-            return View(prod);
-        }
+      
 
         public IActionResult InsertProductToDatabase(Product productToInsert)
         {
@@ -62,6 +57,12 @@ namespace Testing.Controllers
         {
           repo.DeleteProduct(product);
             return RedirectToAction("Index");
+        }
+
+        public IActionResult InsertProduct(Product prod)
+        {
+            
+            return View(prod);
         }
     }
 }
